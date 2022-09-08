@@ -1,57 +1,45 @@
-// TU NOMBRE COMPLETO = DANIEL SANTIAGO POSADA ARANA
+// TU NOMBRE COMPLETO = Daniel Santiago POSADA ARANA
 // TU ID = 000420675
 // TU CORREO ELECTRÓNICO = daniel.posadaa@upb.edu.co
 
-
-(INICIO)
+(Comienzo)
             @16400
             D=A
-
             @pscreen
             M=D
-
             @256
             D=A
-
             @cont
             M=D
-
             @32
             D=A
             @cont2
             M=D
-
             @4096
             D=A
-            @comienzo
+            @START
             M=D
-
             @KBD
             D=M
             @84
             D=D-A
-            @VERTICAL
+            @Vertical
             D;JEQ
-
             @KBD
             D=M
             @67
             D=D-A
             @SETCL
             D;JEQ
-
-            @INICIO
+            @Comienzo
             0;JMP
-(VERTICAL)
+(Vertical)
             @cont
             D=M
-
-            @HORIZONTAL
+            @Horizontal 
             D;JEQ
-
             @256
             D=A
-
             @pscreen
             A=M
             M=D
@@ -61,30 +49,23 @@
             D=A
             @pscreen
             M=M+D
-
-            @VERTICAL
+            @Vertical 
             0;JMP
-
-(HORIZONTAL)
-            @comienzo
+(Horizontal)
+            @START
             D=M
-
             @SCREEN
             A=A+D
             M=-1
-
-            @comienzo
+            @START
             M=M+1
-
             @cont2
             M=M-1
             D=M
-            @END
+            @Final
             D;JEQ
-
-            @HORIZONTAL
+            @Horizontal
             0;JMP
-
 (SETCL)
             @16384
             D=A
@@ -102,40 +83,29 @@
             M=0
             @RECT
             0;JMP
-
 (RECT)
             @coord
             D=M
             @pscreen
             M=D
-
-(PAINT)
+(Dibujar)
             @cont
             D=M
-
-            @END
+            @Final
             D;JEQ
-
-
-
             @color
             D=M
             @pscreen
             A=M
             M=D
-
             @cont
             M=M-1
-
             @salto
             D=M
-
             @pscreen
             M=M+D
-
-            @PAINT
+            @Dibujar
             0;JMP
-
-(END)
-            @INICIO
+(Final)
+            @Comienzo
             0;JMP
