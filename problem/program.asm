@@ -1,146 +1,141 @@
-// Daniel Santiago Posada Arana
-// 000420675	
-// daniel.posadaa@upb.edu.co
+// TU NOMBRE COMPLETO = DANIEL SANTIAGO POSADA ARANA
+// TU ID = 000420675
+// TU CORREO ELECTRÓNICO = daniel.posadaa@upb.edu.co
 
-(INIT)
-        @KBD
-        D=M
-        @84
-        D=D-A
-        @DLINE
-        D;JEQ
 
-        @KBD
-        D=M
-        @67
-        D=D-A 
-        @EMTY
-        D;JEQ
+(INICIO)
+            @16400
+            D=A
 
-        @INIT
-        0;JMP
+            @pscreen
+            M=D
 
-(EMTY)
-        @16384 
-    D=A
-    @coordx 
-    M=D 
-    @8192
-    D=A
-    @contx
-    M=D
-    @1
-    D=A 
-    @saltox
-    M=D
-    @colorx
-    M=0
-    @DRAWR
-    0;JMP
+            @256
+            D=A
 
-(DLINE)
-        @16400 //16384 (pantalla completa) + fila * 32 + columna/16
-        D=A
-    @coord 
-    M=D 
-    @256 //Las filas que se pintaran
-    D=A
-    @cont
-    M=D
-    @32
-    D=A 
-    @salto
-    M=D
-        @256
-        D=A
-    @color
-    M=D
+            @cont
+            M=D
 
-    @DRAW
-    0;JMP
+            @32
+            D=A
+            @cont2
+            M=D
 
-(CLINE)
+            @4096
+            D=A
+            @comienzo
+            M=D
 
-    @20480
-    D=A
-    @coordx
-    M=D
-    @32
-    D=A
-    @contx
-    M=D
-    @1
-    D=A
-    @saltox
-    M=D
-    @colorx
-    M=-1
+            @KBD
+            D=M
+            @84
+            D=D-A
+            @VERTICAL
+            D;JEQ
 
-        @DRAWR
-    0;JMP
+            @KBD
+            D=M
+            @67
+            D=D-A
+            @SETCL
+            D;JEQ
 
-(DRAW)
-        @coord
-        D=M
-        @pscreen
-        M=D
+            @INICIO
+            0;JMP
+(VERTICAL)
+            @cont
+            D=M
 
-(DRAWL)
-        @cont
-        D=M
-        @CLINE
-        D;JEQ
+            @HORIZONTAL
+            D;JEQ
 
-        @color
-        D=M
-        @pscreen
-        A=M
-        M=D
+            @256
+            D=A
 
-        @cont
-        M=M-1
+            @pscreen
+            A=M
+            M=D
+            @cont
+            M=M-1
+            @32
+            D=A
+            @pscreen
+            M=M+D
 
-        @salto
-        D=M
+            @VERTICAL
+            0;JMP
 
-        @pscreen
-        M=M+D
+(HORIZONTAL)
+            @comienzo
+            D=M
 
-        @DRAWL
-        0;JMP
+            @SCREEN
+            A=A+D
+            M=-1
 
-(DRAWR)
-        @coordx
-        D=M
-        @pscreen
-        M=D
+            @comienzo
+            M=M+1
 
-(DRAWN)
-        @contx
-        D=M
-        @END
-        D;JEQ
+            @cont2
+            M=M-1
+            D=M
+            @END
+            D;JEQ
 
-        @colorx
-        D=M
-        @pscreen
-        A=M
-        M=D
+            @HORIZONTAL
+            0;JMP
 
-        @contx
-        M=M-1
+(SETCL)
+            @16384
+            D=A
+            @coord
+            M=D
+            @8192
+            D=A
+            @cont
+            M=D
+            @1
+            D=A
+            @salto
+            M=D
+            @color
+            M=0
+            @RECT
+            0;JMP
 
-        @saltox
-        D=M
+(RECT)
+            @coord
+            D=M
+            @pscreen
+            M=D
 
-        @pscreen
-        M=M+D
+(PAINT)
+            @cont
+            D=M
 
-        @DRAWN
-        0;JMP
+            @END
+            D;JEQ
 
+
+
+            @color
+            D=M
+            @pscreen
+            A=M
+            M=D
+
+            @cont
+            M=M-1
+
+            @salto
+            D=M
+
+            @pscreen
+            M=M+D
+
+            @PAINT
+            0;JMP
 
 (END)
-        @INIT
-        0;JMP
-
+            @INICIO
+            0;JMP
